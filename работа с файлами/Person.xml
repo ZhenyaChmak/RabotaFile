@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<ArrayOfPerson xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Person>
+    <Id>6</Id>
+    <Surname>name_1</Surname>
+    <DateOfBirth>0001-01-01T00:00:00.0001989</DateOfBirth>
+  </Person>
+  <Person>
+    <Id>7</Id>
+    <Surname>name_2</Surname>
+    <DateOfBirth>0001-01-01T00:00:00.0001989</DateOfBirth>
+  </Person>
+  <Person>
+    <Id>8</Id>
+    <Surname>name_3</Surname>
+    <DateOfBirth>0001-01-01T00:00:00.0001989</DateOfBirth>
+  </Person>
+  <Person>
+    <Id>9</Id>
+    <Surname>name_4</Surname>
+    <DateOfBirth>0001-01-01T00:00:00.0001989</DateOfBirth>
+  </Person>
+  <Person>
+    <Id>10</Id>
+    <Surname>name_5</Surname>
+    <DateOfBirth>0001-01-01T00:00:00.0001989</DateOfBirth>
+  </Person>
+</ArrayOfPerson>
