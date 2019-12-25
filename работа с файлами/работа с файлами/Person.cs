@@ -13,6 +13,7 @@ namespace работа_с_файлами
     public class Person
     {
         public int Id;
+        public string Name;
         public string Surname;
         public DateTime DateOfBirth;
         private static int count = 1;
@@ -22,8 +23,9 @@ namespace работа_с_файлами
             this.Id = count++;
         }
 
-        public Person(string Surname, DateTime DateOfBirth):this()
+        public Person(string Name, string Surname, DateTime DateOfBirth):this()
         {
+            this.Name = Name;
             this.Surname = Surname;
             this.DateOfBirth = DateOfBirth;
         }

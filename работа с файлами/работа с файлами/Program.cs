@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
 
-
 namespace работа_с_файлами
 {
     [Serializable]
@@ -17,8 +16,6 @@ namespace работа_с_файлами
     {
         static void Main(string[] args)
         {
-            var WayPerson = ConfigurationManager.AppSettings["WayPerson"];
-            var WayInstitution = ConfigurationManager.AppSettings["WayInstitution"];
 
             int a;
             do
@@ -35,58 +32,36 @@ namespace работа_с_файлами
                         {
                             Console.WriteLine("Человек:\n 1.Создать\n 2.Вывести на экран\n 3.Редактировать\n 4.Удалить\n 5.Назад\n");
                             int.TryParse(Console.ReadLine(), out b);
-                            XmlSerializer formatter = new XmlSerializer(typeof(List<Person>));
                             
                             switch (b)
                             {
                                 case 1:
-                                    List<Person> person = new List<Person>();
-
-                                    for (int i = 0; i < 5; i++)
-                                    {
-                                        person.Add(new Person(("name_" + (i + 1)), new DateTime(2011 - 11 - 11)));
-                                    }
-                                                                       
-                                    using (FileStream fs = new FileStream(WayPerson, FileMode.OpenOrCreate))
-                                    {
-                                        formatter.Serialize(fs, person);
-                                    }
-                                    Console.WriteLine(" Файл создан");
-
+                                    CreateXml createXml = new CreateXml();
+                                    createXml.Create();
                                     break;
                                 case 2:
-                                    List<Person> newPersone;
-                                    using (FileStream fs = new FileStream(WayPerson, FileMode.OpenOrCreate))
-                                    {
-                                        newPersone = (List<Person>)formatter.Deserialize(fs);
-                                        foreach (Person per in newPersone)
-                                        {
-                                            Console.WriteLine($"Name:{per.Surname}\t Date:{per.DateOfBirth}");
-                                        }
-                                        Console.WriteLine();
-                                    }
-                                        break;
+                                    ReadXml readXml = new ReadXml();
+                                    readXml.Read();
+                                    break;
                                 case 3:
+                                    UpdateXml updateXml = new UpdateXml();
+                                    updateXml.Update();
                                     break;
                                 case 4:
-                                    XmlDocument xDoc = new XmlDocument();                                    //создаем обект
-                                    xDoc.Load(WayPerson);                                                    //загружаем в него файл
-                                    XmlElement xRoot = xDoc.DocumentElement;                                 //получаем корневой элемент документа
-                                    XmlNode firstNode = xRoot.FirstChild;                       
-                                    xRoot.RemoveAll();
-                                    xDoc.Save(WayPerson);
+                                    DeleteXml deleteXml = new DeleteXml();
+                                    deleteXml.Delete();
                                     break;
                                 case 5:
                                     ExitCase = true;
                                     break;
                                 default:
-                                    Console.WriteLine("Ввели неверно, повторите");
+                                    Console.WriteLine(Resource1.vuvod);
                                     break;
                             }
                                                        
                             if (ExitCase)
                             {
-                                Console.WriteLine(" Назад <-");
+                                Console.WriteLine(Resource1.nasad);
                                 break;
                             }
                         }
@@ -99,51 +74,32 @@ namespace работа_с_файлами
                         {
                             Console.WriteLine("Учреждение:\n 1.Создать\n 2.Вывести на экран\n 3.Редактировать\n 4.Удалить\n 5.Назад\n");
                             int.TryParse(Console.ReadLine(), out c);
-                            BinaryFormatter formatter = new BinaryFormatter();
                             switch (c)
                             {
                                 case 1:
-                                    List<Institution> institutions = new List<Institution>();
-
-                                    for (int i = 0; i < 5; i++)
-                                    {
-                                        institutions.Add(new Institution(("name_" + (i + 1)), ("Street_"+ (i+1))));
-                                    }
-
-                                    using (FileStream fs = new FileStream(WayInstitution, FileMode.OpenOrCreate))
-                                    {
-                                        formatter.Serialize(fs, institutions);
-                                    }
-                                    Console.WriteLine(" Файл создан");
-
+                                    CreateBin createBin = new CreateBin();
+                                    createBin.Cread();
                                     break;
                                 case 2:
-                                    List<Institution> newInstitution;
-                                    using (FileStream fs = new FileStream(WayInstitution, FileMode.OpenOrCreate))
-                                    {
-                                        newInstitution = (List<Institution>)formatter.Deserialize(fs);
-                                        foreach (Institution per in newInstitution)
-                                        {
-                                            Console.WriteLine($"Address:{per.Address}\t Name:{per.Name} ");
-                                        }
-                                        Console.WriteLine();
-                                    }
+                                    ReadBin readBin = new ReadBin();
+                                    readBin.Read();
                                     break;
                                 case 3:
 
                                     break;
                                 case 4:
-
+                                    DeleteBin deleteBin = new DeleteBin();
+                                    deleteBin.Delete();
                                     break;
                                 case 5:
                                     ExitCase = true;
                                     break;
                                 default:
-                                    Console.WriteLine("Ввели неверно, повторите");
+                                    Console.WriteLine(Resource1.vuvod);
                                     break;
                             }
                             if (ExitCase) {
-                                Console.WriteLine(" Назад <-");
+                                Console.WriteLine(Resource1.nasad);
                                 break;
                             }
                         }
@@ -154,7 +110,7 @@ namespace работа_с_файлами
                         Console.WriteLine("Выход\n");
                         return;
                     default:
-                        Console.WriteLine("Ввели неверно, повторите");
+                        Console.WriteLine(Resource1.vuvod);
                         break;
                 }
             }
