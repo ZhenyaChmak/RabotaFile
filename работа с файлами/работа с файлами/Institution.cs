@@ -9,7 +9,7 @@ namespace работа_с_файлами
 {
     [Serializable]
 
-    class Institution
+   public class Institution
     {
         public int Id;
         public string Name;
